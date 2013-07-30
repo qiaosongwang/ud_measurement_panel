@@ -1,0 +1,23 @@
+<library path="${prefix}/lib/librviz_sensor_control_panel">
+  <class name="SensorControlPanel"
+         type="rviz_sensor_control_panel_space::SensorControlPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A panel widget to interface with hardware initialization commands
+    </description>
+  </class>
+  <class name="SensorControlTab"
+         type="rviz_sensor_control_panel_space::SensorControlTab"
+         base_class_type="QTabWidget">
+    <description>
+      The widget which is laid on top of the HuboInitPanel
+    </description>
+  </class>
+  <class name="FlowLayout"
+         type="FlowLayout"
+         base_class_type="QLayout">
+    <description>
+      An implementation of QLayout which dynamically sizes
+    </description>
+  </class>
+</library>
