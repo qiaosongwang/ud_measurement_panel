@@ -14,15 +14,15 @@
 #include "rviz_sensor_control_panel/HokuyoCommand.h"
 #include "rviz_sensor_control_panel/FleaCommand.h"
 
-namespace rviz_sensor_control_panel_space
+namespace ud_measurement_space
 {
 
-void SensorControlTab::refreshState()
+void MeasurementControlTab::refreshState()
 {
 	
 } 
 
-void SensorControlTab::hokuyoEditHandle()
+void MeasurementControlTab::hokuyoEditHandle()
 {
     std::cerr << "Hokuyo Scan: start at: " << txtMinTheta->text().toStdString() << std::endl;
     
@@ -49,4 +49,4 @@ void SensorControlTab::hokuyoEditHandle()
     //    loop_rate.sleep();
 }
 
-} // End: namespace rviz_sensor_control_panel_space
+} // End: namespace ud_measurement_space

@@ -4,7 +4,7 @@
     RViz Plugin for measurement
   </description>
 
-  <name>rviz_sensor_control_panel</name>
+  <name>ud_measurement_panel</name>
   <version>1.1.0</version>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 

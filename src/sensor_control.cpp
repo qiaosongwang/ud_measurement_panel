@@ -16,26 +16,26 @@
 #include "rviz_sensor_control_panel/FleaCommand.h"
 #include <sstream>
 
-namespace rviz_sensor_control_panel_space
+namespace ud_measurement_space
 {
 
-SensorControlPanel::SensorControlPanel(QWidget *parent)
+MeasurementPanel::MeasurementPanel(QWidget *parent)
     : rviz::Panel(parent)
 {
-    content = new SensorControlTab;
+    content = new MeasurementControlTab;
     QHBoxLayout* panelLayout = new QHBoxLayout;
     panelLayout->addWidget(content);
     setLayout(panelLayout);
 }
 
-SensorControlTab::~SensorControlTab()
+MeasurementControlTab::~MeasurementControlTab()
 {
     refreshManager->alive = false;
     refreshManager->quit();
     refreshManager->wait();
 }
 
-SensorControlTab::SensorControlTab(QWidget *parent)
+MeasurementControlTab::MeasurementControlTab(QWidget *parent)
     : QTabWidget(parent)
 {
 
@@ -78,7 +78,7 @@ SensorControlTab::SensorControlTab(QWidget *parent)
     refreshManager->start();
 }
 
-void SensorControlTab::initializeIMUStateTab()
+void MeasurementControlTab::initializeIMUStateTab()
 {
     //Create a grid layout.
     QGridLayout* imuStateLayout = new QGridLayout;
@@ -94,7 +94,7 @@ void SensorControlTab::initializeIMUStateTab()
     imuStateTab->setLayout(imuStateLayout);
 }
 
-void SensorControlTab::initializeFleaStateTab()
+void MeasurementControlTab::initializeFleaStateTab()
 {
 	//Create a "Master" layout
 	//Create a box layout.
@@ -317,7 +317,7 @@ void SensorControlTab::initializeFleaStateTab()
     fleaStateTab->setLayout(fleaMasterLayout);
 }
 
-void SensorControlTab::initializeHokuyoStateTab()
+void MeasurementControlTab::initializeHokuyoStateTab()
 {
   //Create a box layout.
 
@@ -430,7 +430,7 @@ void RVizRefreshManager::getWaitTime(int t)
 }
 
 
-void SensorControlPanel::save(rviz::Config config) const
+void MeasurementPanel::save(rviz::Config config) const
 {
     /*rviz::Panel::save(config);
     config.mapSetValue("Class", getClassId());
@@ -449,7 +449,7 @@ void SensorControlPanel::save(rviz::Config config) const
 
 }
 
-void SensorControlPanel::load(const rviz::Config &config)
+void MeasurementPanel::load(const rviz::Config &config)
 {
     /*rviz::Panel::load(config);
     rviz::Config ip_config = config.mapGetChild("HuboIP");
@@ -462,12 +462,12 @@ void SensorControlPanel::load(const rviz::Config &config)
 }
 
 
-} // rviz_sensor_control_panel_space
+} // ud_measurement_space
 
 
 
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS( rviz_sensor_control_panel_space::SensorControlPanel,rviz::Panel )
-PLUGINLIB_EXPORT_CLASS( rviz_sensor_control_panel_space::SensorControlTab, QTabWidget )
-PLUGINLIB_EXPORT_CLASS( rviz_sensor_control_panel_space::RVizRefreshManager, QThread )
+PLUGINLIB_EXPORT_CLASS( ud_measurement_space::MeasurementPanel,rviz::Panel )
+PLUGINLIB_EXPORT_CLASS( ud_measurement_space::MeasurementControlTab, QTabWidget )
+PLUGINLIB_EXPORT_CLASS( ud_measurement_space::RVizRefreshManager, QThread )

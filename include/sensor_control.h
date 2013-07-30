@@ -45,16 +45,16 @@
 //#include <hubo.h>
 //#include <hubo-jointparams.h>
 
-namespace rviz_sensor_control_panel_space
+namespace ud_measurement_space
 {
 
-class SensorControlTab;
+class MeasurementControlTab;
 
 class RVizRefreshManager : public QThread
 {
 Q_OBJECT
 public:
-    SensorControlTab* parentWidget;
+    MeasurementControlTab* parentWidget;
     bool alive;
     int waitTime;
 
@@ -72,7 +72,7 @@ signals:
 // Here we declare our new subclass of rviz::Panel.  Every panel which
 // can be added via the Panels/Add_New_Panel menu is a subclass of
 // rviz::Panel.
-class SensorControlTab: public QTabWidget
+class MeasurementControlTab: public QTabWidget
 {
 // This class uses Qt slots and is a subclass of QObject, so it needs
 // the Q_OBJECT macro.
@@ -85,8 +85,8 @@ public:
   // a default of 0 lets the default constructor work and also lets
   // someone using the class for something else to pass in a parent
   // widget as they normally would with Qt.
-  SensorControlTab( QWidget* parent = 0 );
-  ~SensorControlTab();
+  MeasurementControlTab( QWidget* parent = 0 );
+  ~MeasurementControlTab();
 
   QString groupStyleSheet;
   
@@ -236,11 +236,11 @@ private:
 };
 
 
-class SensorControlPanel : public rviz::Panel
+class MeasurementPanel : public rviz::Panel
 {
 Q_OBJECT
 public:
-    SensorControlPanel(QWidget *parent = 0);
+    MeasurementPanel(QWidget *parent = 0);
 
     // Now we declare overrides of rviz::Panel functions for saving and
     // loading data from the config file.  Here the data is the
@@ -250,11 +250,11 @@ public:
 
 private:
 
-    SensorControlTab* content;
+    MeasurementControlTab* content;
 
 };
 
-} // end namespace rviz_sensor_control_panel_space
+} // end namespace ud_measurement_space
 
 
 #endif // TELEOP_PANEL_H
