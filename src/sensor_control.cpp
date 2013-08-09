@@ -144,6 +144,58 @@ void MeasurementControlTab::initializeToolTab()
   
   ////////// End of Estimation ///////////////
   
+    //Create a group box for "Measure" action
+
+  QGroupBox* measureBox = new QGroupBox;
+  measureBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  measureBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  measureBox->setStyleSheet(groupStyleSheet);
+  measureBox->setTitle("Measure");
+  
+  // Measure buttons layout
+  QGridLayout* measureLayout = new QGridLayout;
+  measureLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  
+  // Measure Line Button
+  QPushButton* btnMeasureLine = new QPushButton;
+  btnMeasureLine->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnMeasureLine->setText("Measure Length");
+  measureLayout->addWidget(btnMeasureLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Box and Layout
+  measureBox->setLayout(measureLayout);
+  
+  ////////// End of Measure ///////////////
+  
+  //Create a group box for "Crop" action
+
+  QGroupBox* cropBox = new QGroupBox;
+  cropBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  cropBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  cropBox->setStyleSheet(groupStyleSheet);
+  cropBox->setTitle("Crop");
+  
+  // Estimate buttons layout
+  QGridLayout* cropLayout = new QGridLayout;
+  cropLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  
+  // Estimate Line Button
+  QPushButton* btnCrop = new QPushButton;
+  btnCrop->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnCrop->setText("Crop");
+  cropLayout->addWidget(btnCrop, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+    
+  // Estimate Plane Button
+  QPushButton* btnUndo = new QPushButton;
+  btnUndo->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnUndo->setText("Undo");
+  cropLayout->addWidget(btnUndo, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Box and Layout
+  cropBox->setLayout(cropLayout);
+  
+  ////////// End of Crop ///////////////
+  
   //Will need to connect this later
 
   // connect(btnScan, SIGNAL(clicked()), this, SLOT(hokuyoEditHandle()));
@@ -151,6 +203,8 @@ void MeasurementControlTab::initializeToolTab()
 
   toolStateLayout->addWidget(deleteBox, Qt::AlignHCenter | Qt::AlignTop);
   toolStateLayout->addWidget(estimationBox, Qt::AlignHCenter | Qt::AlignTop);
+  toolStateLayout->addWidget(measureBox, Qt::AlignHCenter | Qt::AlignTop);
+  toolStateLayout->addWidget(cropBox, Qt::AlignHCenter | Qt::AlignTop);
   
   //Create the tab
   toolTab = new QWidget;
