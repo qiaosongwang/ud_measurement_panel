@@ -108,10 +108,41 @@ void MeasurementControlTab::initializeToolTab()
   QPushButton* btnRemoveLastPoint = new QPushButton;
   btnRemoveLastPoint->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnRemoveLastPoint->setText("Remove Last Point");
-  deleteLayout->addWidget(btnRemoveLastPoint, 1, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  deleteLayout->addWidget(btnRemoveLastPoint, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Box and Layout
   deleteBox->setLayout(deleteLayout);
+  
+  ///////////  End of Removing Points //////////////////
+  
+  //Create a group box for "Estimation" action
+
+  QGroupBox* estimationBox = new QGroupBox;
+  estimationBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  estimationBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  estimationBox->setStyleSheet(groupStyleSheet);
+  estimationBox->setTitle("Estimate Line/Plane");
+  
+  // Estimate buttons layout
+  QGridLayout* estimateLayout = new QGridLayout;
+  estimateLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  
+  // Estimate Line Button
+  QPushButton* btnEstimateLine = new QPushButton;
+  btnEstimateLine->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnEstimateLine->setText("Estimate Line");
+  estimateLayout->addWidget(btnEstimateLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+    
+  // Estimate Plane Button
+  QPushButton* btnEstimatePlane = new QPushButton;
+  btnEstimatePlane->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnEstimatePlane->setText("Estimate Plane");
+  estimateLayout->addWidget(btnEstimatePlane, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Box and Layout
+  estimationBox->setLayout(estimateLayout);
+  
+  ////////// End of Estimation ///////////////
   
   //Will need to connect this later
 
@@ -119,6 +150,7 @@ void MeasurementControlTab::initializeToolTab()
   
 
   toolStateLayout->addWidget(deleteBox, Qt::AlignHCenter | Qt::AlignTop);
+  toolStateLayout->addWidget(estimationBox, Qt::AlignHCenter | Qt::AlignTop);
   
   //Create the tab
   toolTab = new QWidget;
