@@ -6,4 +6,4 @@ geany package.xml &
 geany CMakeLists.txt &
 geany msg/HokuyoCommand.msg &
 geany msg/FleaCommand.msg &
-geany msg/IMU.msg &
+geany msg/FleaCommand.msg &

@@ -227,8 +227,8 @@ private:
     
   ///////////////
   
-  void initializeIMUStateTab();
-    QWidget* imuStateTab;
+  void initializeToolTab();
+    QWidget* toolTab;
     QPushButton* btnSendIMU;
     
   ///////////////

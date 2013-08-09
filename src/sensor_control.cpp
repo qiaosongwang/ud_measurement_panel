@@ -57,19 +57,20 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent)
         hokuyo_pub = n.advertise<rviz_sensor_control_panel::HokuyoCommand>("hokuyo_control", 1000);
     //
 
+    //Load Tabs
     
-    initializeHokuyoStateTab();
-    std::cerr << "Measurement Tab Loaded" << std::endl;
+    //initializeHokuyoStateTab();
+    //std::cerr << "Measurement Tab Loaded" << std::endl;
     
-    initializeFleaStateTab();
-    std::cerr << "iMarker Tab Loaded" << std::endl;
+    //initializeFleaStateTab();
+    //std::cerr << "iMarker Tab Loaded" << std::endl;
     
-    initializeIMUStateTab();
-    std::cerr << "Processing Tab Loaded" << std::endl;
+    initializeToolTab();
+    std::cerr << "Tool Tab Loaded" << std::endl;
 
-    addTab(hokuyoStateTab, "Measurement");
-    addTab(fleaStateTab, "iMarker");
-    addTab(imuStateTab, "Processing");
+    //addTab(hokuyoStateTab, "Measurement");
+    //addTab(fleaStateTab, "iMarker");
+    addTab(toolTab, "Measurement");
 
     
     refreshManager = new RVizRefreshManager;
@@ -78,20 +79,52 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent)
     refreshManager->start();
 }
 
-void MeasurementControlTab::initializeIMUStateTab()
+void MeasurementControlTab::initializeToolTab()
 {
-    //Create a grid layout.
-    QGridLayout* imuStateLayout = new QGridLayout;
-    imuStateLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
-	
-	btnSendIMU = new QPushButton;
-    btnSendIMU->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    btnSendIMU->setText("Send to IMU");
-    btnSendIMU->setToolTip("Sends the command.");
-    imuStateLayout->addWidget(btnSendIMU, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
-	
-    imuStateTab = new QWidget;
-    imuStateTab->setLayout(imuStateLayout);
+       
+    //Create a box layout.
+
+  QVBoxLayout* toolStateLayout = new QVBoxLayout;
+  
+  //Create a group box for "Removing Points" action
+
+  QGroupBox* deleteBox = new QGroupBox;
+  deleteBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  deleteBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  deleteBox->setStyleSheet(groupStyleSheet);
+  deleteBox->setTitle("Remove Points");
+  
+  // Delete buttons layout
+  QGridLayout* deleteLayout = new QGridLayout;
+  deleteLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+  
+  // Delete All Points Button
+  QPushButton* btnDeleteAllPoints = new QPushButton;
+  btnDeleteAllPoints->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnDeleteAllPoints->setText("Delete All Points");
+  deleteLayout->addWidget(btnDeleteAllPoints, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+    
+  // Delete Last Point Button
+  QPushButton* btnRemoveLastPoint = new QPushButton;
+  btnRemoveLastPoint->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnRemoveLastPoint->setText("Remove Last Point");
+  deleteLayout->addWidget(btnRemoveLastPoint, 1, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Box and Layout
+  deleteBox->setLayout(deleteLayout);
+  
+  //Will need to connect this later
+
+  // connect(btnScan, SIGNAL(clicked()), this, SLOT(hokuyoEditHandle()));
+  
+
+  toolStateLayout->addWidget(deleteBox, Qt::AlignHCenter | Qt::AlignTop);
+  
+  //Create the tab
+  toolTab = new QWidget;
+  //Set the tab's master layout
+  toolTab->setLayout(toolStateLayout);
+    
 }
 
 void MeasurementControlTab::initializeFleaStateTab()
