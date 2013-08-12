@@ -11,6 +11,7 @@ add_message_files(
   HokuyoCommand.msg
   FleaCommand.msg
   IMU.msg
+  MeasurementCommand.msg
 )
 
 generate_messages(
