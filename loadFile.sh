@@ -4,6 +4,4 @@ geany src/sensor_control_slots.cpp &
 geany plugin_description.xml &
 geany package.xml &
 geany CMakeLists.txt &
-geany msg/HokuyoCommand.msg &
-geany msg/FleaCommand.msg &
-geany msg/FleaCommand.msg &
+geany msg/MeasurementCommand.msg &

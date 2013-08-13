@@ -95,6 +95,7 @@ public:
   
   ros::NodeHandle n;
   ros::Publisher hokuyo_pub;
+  ros::Publisher measurement_pub;
 
 
   // Handler for the nested ach daemon process
@@ -167,8 +168,9 @@ protected Q_SLOTS:
   void handleIMUCopy();
   void handleJointCopy();
   
-  //added 
+  //Handle Button Clicks
   void hokuyoEditHandle();
+  void btnRemoveAllPointsClick();
 
 
   // Update all state information

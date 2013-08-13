@@ -13,6 +13,7 @@
 #include "std_msgs/String.h"
 #include "rviz_sensor_control_panel/HokuyoCommand.h"
 #include "rviz_sensor_control_panel/FleaCommand.h"
+#include "ud_measurement_panel/MeasurementCommand.h"
 
 namespace ud_measurement_space
 {
@@ -47,6 +48,16 @@ void MeasurementControlTab::hokuyoEditHandle()
     ros::spinOnce();
 
     //    loop_rate.sleep();
+}
+void MeasurementControlTab::btnRemoveAllPointsClick()
+{
+    std::cerr << "Remove All Points Clicked"<< std::endl;
+    ros::Rate loop_rate(10);
+    loop_rate.sleep();
+    ud_measurement_panel::MeasurementCommand msg;
+    msg.RemoveAllPoints = 1;
+    measurement_pub.publish(msg);
+    ros::spinOnce();
 }
 
 } // End: namespace ud_measurement_space

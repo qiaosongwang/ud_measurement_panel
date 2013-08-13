@@ -14,6 +14,7 @@
 #include "std_msgs/String.h"
 #include "rviz_sensor_control_panel/HokuyoCommand.h"
 #include "rviz_sensor_control_panel/FleaCommand.h"
+#include "ud_measurement_panel/MeasurementCommand.h"
 #include <sstream>
 
 namespace ud_measurement_space
@@ -55,6 +56,8 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent)
     char **argv;
     ros::init(argc, argv, "talker");
         hokuyo_pub = n.advertise<rviz_sensor_control_panel::HokuyoCommand>("hokuyo_control", 1000);
+    ros::init(argc, argv, "talker");
+        measurement_pub = n.advertise<ud_measurement_panel::MeasurementCommand>("measurement_command", 1000);
     //
 
     //Load Tabs
@@ -103,6 +106,9 @@ void MeasurementControlTab::initializeToolTab()
   btnDeleteAllPoints->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnDeleteAllPoints->setText("Delete All Points");
   deleteLayout->addWidget(btnDeleteAllPoints, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnDeleteAllPoints, SIGNAL(clicked()), this, SLOT(btnRemoveAllPointsClick()));
     
   // Delete Last Point Button
   QPushButton* btnRemoveLastPoint = new QPushButton;
