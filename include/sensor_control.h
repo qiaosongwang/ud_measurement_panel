@@ -171,6 +171,12 @@ protected Q_SLOTS:
   //Handle Button Clicks
   void hokuyoEditHandle();
   void btnRemoveAllPointsClick();
+  void btnRemoveLastPointClick(); 
+  void btnEstimateLineClick();
+  void btnEstimatePlaneClick();
+  void btnMeasureLengthClick();
+  void btnCropClick();
+  void btnUndoClick();
 
 
   // Update all state information
