@@ -116,6 +116,9 @@ void MeasurementControlTab::initializeToolTab()
   btnRemoveLastPoint->setText("Remove Last Point");
   deleteLayout->addWidget(btnRemoveLastPoint, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
+  // Connect Button
+  connect(btnRemoveLastPoint, SIGNAL(clicked()), this, SLOT(btnRemoveLastPointClick()));
+  
   // Connect Box and Layout
   deleteBox->setLayout(deleteLayout);
   
@@ -138,12 +141,18 @@ void MeasurementControlTab::initializeToolTab()
   btnEstimateLine->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnEstimateLine->setText("Estimate Line");
   estimateLayout->addWidget(btnEstimateLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnEstimateLine, SIGNAL(clicked()), this, SLOT(btnEstimateLineClick()));
     
   // Estimate Plane Button
   QPushButton* btnEstimatePlane = new QPushButton;
   btnEstimatePlane->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnEstimatePlane->setText("Estimate Plane");
   estimateLayout->addWidget(btnEstimatePlane, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnEstimatePlane, SIGNAL(clicked()), this, SLOT(btnEstimatePlaneClick()));
   
   // Connect Box and Layout
   estimationBox->setLayout(estimateLayout);
@@ -168,6 +177,9 @@ void MeasurementControlTab::initializeToolTab()
   btnMeasureLine->setText("Measure Length");
   measureLayout->addWidget(btnMeasureLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
+  // Connect Button
+  connect(btnMeasureLine, SIGNAL(clicked()), this, SLOT(btnMeasureLengthClick()));
+  
   // Connect Box and Layout
   measureBox->setLayout(measureLayout);
   
@@ -185,18 +197,24 @@ void MeasurementControlTab::initializeToolTab()
   QGridLayout* cropLayout = new QGridLayout;
   cropLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   
-  // Estimate Line Button
+  // Crop Button
   QPushButton* btnCrop = new QPushButton;
   btnCrop->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnCrop->setText("Crop");
   cropLayout->addWidget(btnCrop, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnCrop, SIGNAL(clicked()), this, SLOT(btnCropClick()));
     
-  // Estimate Plane Button
+  // Undo Button
   QPushButton* btnUndo = new QPushButton;
   btnUndo->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnUndo->setText("Undo");
   cropLayout->addWidget(btnUndo, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
+   // Connect Button
+  connect(btnUndo, SIGNAL(clicked()), this, SLOT(btnUndoClick()));
+    
   // Connect Box and Layout
   cropBox->setLayout(cropLayout);
   
