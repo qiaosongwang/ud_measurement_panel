@@ -36,7 +36,7 @@ catkin_package(
 ## Here we specify which header files need to be run through "moc",
 ## Qt's meta-object compiler.
 qt4_wrap_cpp(MOC_FILES
-  include/sensor_control.h
+  include/measurement_control.h
   include/FlowLayout.h
 )
 
@@ -44,10 +44,10 @@ qt4_wrap_cpp(MOC_FILES
 ## Here we specify the list of source files, including the output of
 ## the previous command which is stored in ``${MOC_FILES}``.
 set(SOURCE_FILES
-  src/sensor_control.cpp
-  src/sensor_control_slots.cpp
+  src/measurement_control.cpp
+  src/measurement_control_slots.cpp
   src/FlowLayout.cpp
-  include/sensor_control.h
+  include/measurement_control.h
   include/FlowLayout.h
   ${MOC_FILES}
 )
