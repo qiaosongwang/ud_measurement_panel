@@ -21,77 +21,112 @@ void MeasurementControlTab::refreshState()
 	
 } 
 
-void MeasurementControlTab::btnRemoveAllPointsClick()
+void MeasurementControlTab::btnDeleteAllClick()
 {
-    std::cerr << "Remove All Points Clicked"<< std::endl;
+    std::cerr << "Delete All Points" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
-    msg.RemoveAllPoints = 1;
+    msg.DeleteAll = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.DeleteAll = 9;
 }
 
-void MeasurementControlTab::btnRemoveLastPointClick()
+void MeasurementControlTab::btnDeleteSelectedClick()
 {
-    std::cerr << "Remove Last Point Clicked"<< std::endl;
+    std::cerr << "Delete Selected Point" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
-    msg.RemoveLastPoint = 1;
+    msg.DeleteSelected = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.DeleteSelected = 0;
+}
+
+void MeasurementControlTab::btnMoveSelectedClick()
+{
+    std::cerr << "Move Selected Point" << std::endl;
+    ros::Rate loop_rate(10);
+    loop_rate.sleep();
+    ud_measurement_panel::MeasurementCommand msg;
+    msg.MoveSelected = 1;
+    measurement_pub.publish(msg);
+    ros::spinOnce();
+    msg.MoveSelected = 0;
 }
 
 void MeasurementControlTab::btnEstimateLineClick()
 {
-    std::cerr << "Est Line Clicked"<< std::endl;
+    std::cerr << "Estimate Line" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
     msg.EstimateLine = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.EstimateLine = 0;
 }
+
 void MeasurementControlTab::btnEstimatePlaneClick()
 {
-    std::cerr << "Est Plane Clicked"<< std::endl;
+    std::cerr << "Estimate Plane" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
     msg.EstimatePlane = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.EstimatePlane = 0;
 }
+
+void MeasurementControlTab::btnEstimateCircleClick()
+{
+    std::cerr << "Estimate Circle" << std::endl;
+    ros::Rate loop_rate(10);
+    loop_rate.sleep();
+    ud_measurement_panel::MeasurementCommand msg;
+    msg.EstimateCircle = 1;
+    measurement_pub.publish(msg);
+    ros::spinOnce();
+    msg.EstimateCircle = 0;
+}
+
 void MeasurementControlTab::btnMeasureLengthClick()
 {
-    std::cerr << "Measure Length Clicked"<< std::endl;
+    std::cerr << "Measure Length" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
     msg.MeasureLength = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.MeasureLength = 0;
 }
+
 void MeasurementControlTab::btnCropClick()
 {
-    std::cerr << "Crop Clicked"<< std::endl;
+    std::cerr << "Crop" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
     msg.Crop = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.Crop = 0;
 }
+
 void MeasurementControlTab::btnUndoClick()
 {
-    std::cerr << "Undo Clicked"<< std::endl;
+    std::cerr << "Undo" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
     ud_measurement_panel::MeasurementCommand msg;
     msg.Undo = 1;
     measurement_pub.publish(msg);
     ros::spinOnce();
+    msg.Undo = 0;
 }
 
 } // End: namespace ud_measurement_space

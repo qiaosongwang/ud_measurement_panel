@@ -84,29 +84,30 @@ void MeasurementControlTab::initializeToolTab()
   deleteBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   deleteBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   deleteBox->setStyleSheet(groupStyleSheet);
-  deleteBox->setTitle("Remove Points");
+  deleteBox->setTitle("Delete...");
   
   // Delete buttons layout
   QGridLayout* deleteLayout = new QGridLayout;
   deleteLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   
+  // Delete Last Point Button
+  QPushButton* btnDeleteSelected = new QPushButton;
+  btnDeleteSelected->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnDeleteSelected->setText("Selected point");
+  deleteLayout->addWidget(btnDeleteSelected, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnDeleteSelected, SIGNAL(clicked()), this, SLOT(btnDeleteSelectedClick()));
+
   // Delete All Points Button
   QPushButton* btnDeleteAllPoints = new QPushButton;
   btnDeleteAllPoints->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-  btnDeleteAllPoints->setText("Delete All Points");
+  btnDeleteAllPoints->setText("All points");
   deleteLayout->addWidget(btnDeleteAllPoints, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Button
-  connect(btnDeleteAllPoints, SIGNAL(clicked()), this, SLOT(btnRemoveAllPointsClick()));
+  connect(btnDeleteAllPoints, SIGNAL(clicked()), this, SLOT(btnDeleteAllClick()));
     
-  // Delete Last Point Button
-  QPushButton* btnRemoveLastPoint = new QPushButton;
-  btnRemoveLastPoint->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-  btnRemoveLastPoint->setText("Remove Last Point");
-  deleteLayout->addWidget(btnRemoveLastPoint, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
-  
-  // Connect Button
-  connect(btnRemoveLastPoint, SIGNAL(clicked()), this, SLOT(btnRemoveLastPointClick()));
   
   // Connect Box and Layout
   deleteBox->setLayout(deleteLayout);
@@ -119,7 +120,7 @@ void MeasurementControlTab::initializeToolTab()
   estimationBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   estimationBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   estimationBox->setStyleSheet(groupStyleSheet);
-  estimationBox->setTitle("Estimate Line/Plane");
+  estimationBox->setTitle("Estimate...");
   
   // Estimate buttons layout
   QGridLayout* estimateLayout = new QGridLayout;
@@ -128,7 +129,7 @@ void MeasurementControlTab::initializeToolTab()
   // Estimate Line Button
   QPushButton* btnEstimateLine = new QPushButton;
   btnEstimateLine->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-  btnEstimateLine->setText("Estimate Line");
+  btnEstimateLine->setText("Line");
   estimateLayout->addWidget(btnEstimateLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Button
@@ -137,7 +138,7 @@ void MeasurementControlTab::initializeToolTab()
   // Estimate Plane Button
   QPushButton* btnEstimatePlane = new QPushButton;
   btnEstimatePlane->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-  btnEstimatePlane->setText("Estimate Plane");
+  btnEstimatePlane->setText("Plane");
   estimateLayout->addWidget(btnEstimatePlane, 0, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Button
@@ -154,7 +155,7 @@ void MeasurementControlTab::initializeToolTab()
   measureBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   measureBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
   measureBox->setStyleSheet(groupStyleSheet);
-  measureBox->setTitle("Measure");
+  measureBox->setTitle("Measure...");
   
   // Measure buttons layout
   QGridLayout* measureLayout = new QGridLayout;
@@ -163,7 +164,7 @@ void MeasurementControlTab::initializeToolTab()
   // Measure Line Button
   QPushButton* btnMeasureLine = new QPushButton;
   btnMeasureLine->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-  btnMeasureLine->setText("Measure Length");
+  btnMeasureLine->setText("Length");
   measureLayout->addWidget(btnMeasureLine, 0, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Button

@@ -150,6 +150,7 @@ signals:
 protected Q_SLOTS:
 
   // Send the command once the joint button is released
+  /*
   void handleJointCmdButton(int id);
   void handleJointStateButton(int id);
 
@@ -167,13 +168,16 @@ protected Q_SLOTS:
   void handleFTCopy();
   void handleIMUCopy();
   void handleJointCopy();
-  
+  */
+
   //Handle Button Clicks
-  void hokuyoEditHandle();
-  void btnRemoveAllPointsClick();
-  void btnRemoveLastPointClick(); 
+
+  void btnDeleteAllClick();
+  void btnDeleteSelectedClick(); 
+  void btnMoveSelectedClick(); 
   void btnEstimateLineClick();
   void btnEstimatePlaneClick();
+  void btnEstimateCircleClick();
   void btnMeasureLengthClick();
   void btnCropClick();
   void btnUndoClick();

@@ -8,9 +8,6 @@ find_package( catkin REQUIRED COMPONENTS roscpp rospy message_generation)
 
 add_message_files(
   FILES
-  HokuyoCommand.msg
-  FleaCommand.msg
-  IMU.msg
   MeasurementCommand.msg
 )
 
