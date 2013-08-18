@@ -143,6 +143,15 @@ void MeasurementControlTab::initializeToolTab()
   
   // Connect Button
   connect(btnEstimatePlane, SIGNAL(clicked()), this, SLOT(btnEstimatePlaneClick()));
+
+  // Estimate Circle Button
+  QPushButton* btnEstimateCircle = new QPushButton;
+  btnEstimateCircle->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnEstimateCircle->setText("Circle");
+  estimateLayout->addWidget(btnEstimateCircle, 0, 2, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnEstimateCircle, SIGNAL(clicked()), this, SLOT(btnEstimateCircleClick()));
   
   // Connect Box and Layout
   estimationBox->setLayout(estimateLayout);
