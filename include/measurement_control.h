@@ -178,6 +178,7 @@ protected Q_SLOTS:
   void btnEstimateLineClick();
   void btnEstimatePlaneClick();
   void btnEstimateCircleClick();
+  void btnEstimateRigidTransformClick();
   void btnMeasureLengthClick();
   void btnCropClick();
   void btnUndoClick();

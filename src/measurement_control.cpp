@@ -148,10 +148,19 @@ void MeasurementControlTab::initializeToolTab()
   QPushButton* btnEstimateCircle = new QPushButton;
   btnEstimateCircle->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   btnEstimateCircle->setText("Circle");
-  estimateLayout->addWidget(btnEstimateCircle, 0, 2, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  estimateLayout->addWidget(btnEstimateCircle, 1, 0, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
   
   // Connect Button
   connect(btnEstimateCircle, SIGNAL(clicked()), this, SLOT(btnEstimateCircleClick()));
+
+  // Estimate Rigid Transform Button
+  QPushButton* btnEstimateRigidTransform = new QPushButton;
+  btnEstimateRigidTransform->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  btnEstimateRigidTransform->setText("Rigid transform");
+  estimateLayout->addWidget(btnEstimateRigidTransform, 1, 1, 1, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+  
+  // Connect Button
+  connect(btnEstimateRigidTransform, SIGNAL(clicked()), this, SLOT(btnEstimateRigidTransformClick()));
   
   // Connect Box and Layout
   estimationBox->setLayout(estimateLayout);

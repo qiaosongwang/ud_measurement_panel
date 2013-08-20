@@ -6,6 +6,7 @@ uint8 MeasureLength
 uint8 EstimateLine
 uint8 EstimatePlane
 uint8 EstimateCircle
+uint8 EstimateRigidTransform
 float32 InlierDistanceThresh
 uint8 Crop
 uint8 Undo

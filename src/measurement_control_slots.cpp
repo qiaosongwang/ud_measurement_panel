@@ -93,6 +93,18 @@ void MeasurementControlTab::btnEstimateCircleClick()
     msg.EstimateCircle = 0;
 }
 
+void MeasurementControlTab::btnEstimateRigidTransformClick()
+{
+    std::cerr << "Estimate RigidTransform" << std::endl;
+    ros::Rate loop_rate(10);
+    loop_rate.sleep();
+    ud_measurement_panel::MeasurementCommand msg;
+    msg.EstimateRigidTransform = 1;
+    measurement_pub.publish(msg);
+    ros::spinOnce();
+    msg.EstimateRigidTransform = 0;
+}
+
 void MeasurementControlTab::btnMeasureLengthClick()
 {
     std::cerr << "Measure Length" << std::endl;
