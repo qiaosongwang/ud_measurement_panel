@@ -263,7 +263,9 @@ void RVizRefreshManager::getWaitTime(int t)
 
 void MeasurementPanel::save(rviz::Config config) const
 {
-    /*rviz::Panel::save(config);
+    rviz::Panel::save(config);
+
+    /*
     config.mapSetValue("Class", getClassId());
 
     rviz::Config ip_config = config.mapMakeChild("HuboIP");
@@ -276,13 +278,16 @@ void MeasurementPanel::save(rviz::Config config) const
     ip_config.mapSetValue("ipAddrA", a);
     ip_config.mapSetValue("ipAddrB", b);
     ip_config.mapSetValue("ipAddrC", c);
-    ip_config.mapSetValue("ipAddrD", d);*/
+    ip_config.mapSetValue("ipAddrD", d);
+*/
 
 }
 
 void MeasurementPanel::load(const rviz::Config &config)
 {
-    /*rviz::Panel::load(config);
+    rviz::Panel::load(config);
+
+    /*
     rviz::Config ip_config = config.mapGetChild("HuboIP");
     QVariant a, b, c, d;
     if( !ip_config.mapGetValue("ipAddrA", &a) || !ip_config.mapGetValue("ipAddrB", &b)
