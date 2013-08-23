@@ -1,16 +1,12 @@
 Header header
-uint8 MoveSelected
-uint8 DeleteSelected
-uint8 DeleteAll
 uint8 MeasureLength
+uint8 MeasureDistanceToPlane
 uint8 EstimateLine
 uint8 EstimatePlane
 uint8 EstimateCircle
 uint8 EstimateRigidTransform
 uint8 Crop
 uint8 Undo
-uint8 DisplayIndices
-uint8 DisplayConnections
 float64 CursorMaxDistance
 float64 LineRoughMaxDistance
 float64 LineMaxDistance

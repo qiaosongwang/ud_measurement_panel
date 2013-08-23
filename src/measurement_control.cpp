@@ -46,19 +46,15 @@ MeasurementPanel::MeasurementPanel(QWidget *parent) : rviz::Panel(parent)
 
 void MeasurementControlTab::set_default_measurement_message()
 {
-  measurement_msg.MoveSelected=0;
-  measurement_msg.DeleteSelected=0;
-  measurement_msg.DeleteAll=0;
   measurement_msg.MeasureLength=0;
+  measurement_msg.MeasureDistanceToPlane=0;
   measurement_msg.EstimateLine=0;
   measurement_msg.EstimatePlane=0;
   measurement_msg.EstimateCircle=0;
   measurement_msg.EstimateRigidTransform=0;
   measurement_msg.Crop=0;
   measurement_msg.Undo=0;
-  measurement_msg.DisplayIndices=0;
-  measurement_msg.DisplayConnections=0;
-  measurement_msg.CursorMaxDistance              = 0.05;
+  measurement_msg.CursorMaxDistance           = 0.05;
   measurement_msg.LineRoughMaxDistance        = 0.1;
   measurement_msg.LineMaxDistance             = 0.05;
   measurement_msg.PlanePrismDistance          = 0.1;
@@ -106,12 +102,12 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent) : QTabWidget(paren
                  
   // Load Tabs
     
-  initializeEditTab();
-  std::cerr << "Edit Tab Loaded" << std::endl;
-
   initializeEstimationTab();
   std::cerr << "Estimation Tab Loaded" << std::endl;
   
+  initializeRegistrationTab();
+  std::cerr << "Registration Tab Loaded" << std::endl;
+
   initializeMetricsTab();
   std::cerr << "Metrics Tab Loaded" << std::endl;
   
@@ -121,8 +117,8 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent) : QTabWidget(paren
   initializeDisplayTab();
   std::cerr << "Display Tab Loaded" << std::endl;
   
-  addTab(editTab, "Edit");
   addTab(estimationTab, "Estimate");
+  addTab(registrationTab, "Register");
   addTab(metricsTab, "Metrics");
   addTab(selectionTab, "Select");
   addTab(displayTab, "Display");
@@ -135,7 +131,7 @@ MeasurementControlTab::MeasurementControlTab(QWidget *parent) : QTabWidget(paren
 
 //----------------------------------------------------------------------------
 
-void MeasurementControlTab::initializeEditTab()
+void MeasurementControlTab::initializeRegistrationTab()
 {
   QVBoxLayout *layout = new QVBoxLayout;
 
@@ -143,6 +139,7 @@ void MeasurementControlTab::initializeEditTab()
   
   // MOVE BOX 
 
+  /*
   QGroupBox *moveBox = new QGroupBox;
   moveBox->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   moveBox->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
@@ -199,16 +196,19 @@ void MeasurementControlTab::initializeEditTab()
   
   // Connect Box and Layout
   deleteBox->setLayout(deleteLayout);
+  */
 
   ///////////  End of Removing Points //////////////////
 
   // FINALIZE TAB
     
-  layout->addWidget(moveBox, Qt::AlignHCenter | Qt::AlignTop);
-  layout->addWidget(deleteBox, Qt::AlignHCenter | Qt::AlignTop);
+  layout->addWidget(InitializeEstimateRigidTransformBox(), Qt::AlignHCenter | Qt::AlignTop);
+
+  //  layout->addWidget(moveBox, Qt::AlignHCenter | Qt::AlignTop);
+  //  layout->addWidget(deleteBox, Qt::AlignHCenter | Qt::AlignTop);
   
-  editTab = new QWidget;
-  editTab->setLayout(layout);
+  registrationTab = new QWidget;
+  registrationTab->setLayout(layout);
   
 }
   
@@ -574,7 +574,6 @@ void MeasurementControlTab::initializeEstimationTab()
   layout->addWidget(InitializeEstimateLineBox(), Qt::AlignHCenter | Qt::AlignTop);
   layout->addWidget(InitializeEstimatePlaneBox(), Qt::AlignHCenter | Qt::AlignTop);
   layout->addWidget(InitializeEstimateCircleBox(), Qt::AlignHCenter | Qt::AlignTop);
-  layout->addWidget(InitializeEstimateRigidTransformBox(), Qt::AlignHCenter | Qt::AlignTop);
   
   estimationTab = new QWidget;
   estimationTab->setLayout(layout);

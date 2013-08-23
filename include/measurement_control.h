@@ -114,11 +114,13 @@ namespace ud_measurement_space
     protected Q_SLOTS:      
     
     //Handle Button Clicks
-    
+
+    /*    
     void btnDeleteAllClick();
     void btnDeleteSelectedClick(); 
-
     void btnMoveSelectedClick(); 
+    */
+
     void btnEstimateLineClick();
     void btnEstimatePlaneClick();
     void btnEstimateCircleClick();
@@ -148,8 +150,8 @@ namespace ud_measurement_space
     QLineEdit* textCircleMinRadius;
     QLineEdit* textCircleMaxRadius;
 
-    void initializeEditTab();
-    QWidget* editTab;
+    void initializeRegistrationTab();
+    QWidget* registrationTab;
 
     void initializeEstimationTab();
     QWidget* estimationTab;

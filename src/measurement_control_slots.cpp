@@ -26,6 +26,7 @@ void MeasurementControlTab::refreshState()
 
 //----------------------------------------------------------------------------
 
+/*
 void MeasurementControlTab::btnDeleteAllClick()
 {
     std::cerr << "Delete All Points" << std::endl;
@@ -65,6 +66,7 @@ void MeasurementControlTab::btnMoveSelectedClick()
     ros::spinOnce();
     measurement_msg.MoveSelected = 0;
 }
+*/
 
 //----------------------------------------------------------------------------
 
