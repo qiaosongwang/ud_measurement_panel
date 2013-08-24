@@ -26,67 +26,25 @@ void MeasurementControlTab::refreshState()
 
 //----------------------------------------------------------------------------
 
-/*
-void MeasurementControlTab::btnDeleteAllClick()
+// this just collects parameter values from the various text boxes
+
+void MeasurementControlTab::gather_current_measurement_command_parameters()
 {
-    std::cerr << "Delete All Points" << std::endl;
-    ros::Rate loop_rate(10);
-    loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.DeleteAll = 1;
-    measurement_pub.publish(measurement_msg);
-    ros::spinOnce();
-    measurement_msg.DeleteAll = 0;
-}
-
-//----------------------------------------------------------------------------
-
-void MeasurementControlTab::btnDeleteSelectedClick()
-{
-    std::cerr << "Delete Selected Point" << std::endl;
-    ros::Rate loop_rate(10);
-    loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.DeleteSelected = 1;
-    measurement_pub.publish(measurement_msg);
-    ros::spinOnce();
-    measurement_msg.DeleteSelected = 0;
-}
-
-//----------------------------------------------------------------------------
-
-void MeasurementControlTab::btnMoveSelectedClick()
-{
-    std::cerr << "Move Selected Point" << std::endl;
-    ros::Rate loop_rate(10);
-    loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.MoveSelected = 1;
-    measurement_pub.publish(measurement_msg);
-    ros::spinOnce();
-    measurement_msg.MoveSelected = 0;
-}
-*/
-
-//----------------------------------------------------------------------------
-
-void MeasurementControlTab::construct_current_measurement_message()
-{
-  measurement_msg.CursorMaxDistance = textCursorMaxDistance->text().toFloat();
+  measurement_command_msg.CursorMaxDistance = textCursorMaxDistance->text().toFloat();
   
-  measurement_msg.LineRoughMaxDistance = textLineRoughMaxDistance->text().toFloat();
-  measurement_msg.LineMaxDistance = textLineMaxDistance->text().toFloat();
+  measurement_command_msg.LineRoughMaxDistance = textLineRoughMaxDistance->text().toFloat();
+  measurement_command_msg.LineMaxDistance = textLineMaxDistance->text().toFloat();
   
-  measurement_msg.PlanePrismDistance = textPlanePrismDistance->text().toFloat();
-  measurement_msg.PlaneMaxDistance = textPlaneMaxDistance->text().toFloat();
-  measurement_msg.PlaneHullScaleFactor = textPlaneHullScale->text().toFloat();
-  measurement_msg.PlaneHullCrop = checkPlaneHullCrop->isChecked();
-  measurement_msg.PlaneFitTwice = checkPlaneFitTwice->isChecked();
+  measurement_command_msg.PlanePrismDistance = textPlanePrismDistance->text().toFloat();
+  measurement_command_msg.PlaneMaxDistance = textPlaneMaxDistance->text().toFloat();
+  measurement_command_msg.PlaneHullScaleFactor = textPlaneHullScale->text().toFloat();
+  measurement_command_msg.PlaneHullCrop = checkPlaneHullCrop->isChecked();
+  measurement_command_msg.PlaneFitTwice = checkPlaneFitTwice->isChecked();
   
-  measurement_msg.CirclePlanePrismDistance = textCirclePlanePrismDistance->text().toFloat();
-  measurement_msg.CircleMaxDistance = textCircleMaxDistance->text().toFloat();
-  measurement_msg.CircleMinRadius = textCircleMinRadius->text().toFloat();
-  measurement_msg.CircleMaxRadius = textCircleMaxRadius->text().toFloat();
+  measurement_command_msg.CirclePlanePrismDistance = textCirclePlanePrismDistance->text().toFloat();
+  measurement_command_msg.CircleMaxDistance = textCircleMaxDistance->text().toFloat();
+  measurement_command_msg.CircleMinRadius = textCircleMinRadius->text().toFloat();
+  measurement_command_msg.CircleMaxRadius = textCircleMaxRadius->text().toFloat();
 }
 
 //----------------------------------------------------------------------------
@@ -96,14 +54,15 @@ void MeasurementControlTab::btnEstimateLineClick()
     std::cerr << "Estimate Line" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
 
-    construct_current_measurement_message();
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
 
-    measurement_msg.EstimateLine = 1;
-    measurement_pub.publish(measurement_msg);
+    measurement_command_msg.EstimateLine = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.EstimateLine = 0;
+
+    //    measurement_command_msg.EstimateLine = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -114,14 +73,16 @@ void MeasurementControlTab::btnEstimatePlaneClick()
     ros::Rate loop_rate(10);
     loop_rate.sleep();
 
-    construct_current_measurement_message();
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
 
-    printf("%lf %lf %lf\n", measurement_msg.PlanePrismDistance, measurement_msg.PlaneMaxDistance, measurement_msg.PlaneHullScaleFactor);
+    //    printf("%lf %lf %lf\n", measurement_command_msg.PlanePrismDistance, measurement_command_msg.PlaneMaxDistance, measurement_command_msg.PlaneHullScaleFactor);
 
-    measurement_msg.EstimatePlane = 1;
-    measurement_pub.publish(measurement_msg);
+    measurement_command_msg.EstimatePlane = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.EstimatePlane = 0;
+
+    //    measurement_command_msg.EstimatePlane = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -131,14 +92,15 @@ void MeasurementControlTab::btnEstimateCircleClick()
     std::cerr << "Estimate Circle" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
 
-    construct_current_measurement_message();
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
 
-    measurement_msg.EstimateCircle = 1;
-    measurement_pub.publish(measurement_msg);
+    measurement_command_msg.EstimateCircle = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.EstimateCircle = 0;
+
+    //    measurement_command_msg.EstimateCircle = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -148,11 +110,15 @@ void MeasurementControlTab::btnEstimateRigidTransformClick()
     std::cerr << "Estimate RigidTransform" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.EstimateRigidTransform = 1;
-    measurement_pub.publish(measurement_msg);
+
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
+
+    measurement_command_msg.EstimateRigidTransform = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.EstimateRigidTransform = 0;
+
+    //    measurement_command_msg.EstimateRigidTransform = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -162,11 +128,33 @@ void MeasurementControlTab::btnMeasureLengthClick()
     std::cerr << "Measure Length" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.MeasureLength = 1;
-    measurement_pub.publish(measurement_msg);
+
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
+
+    measurement_command_msg.MeasureLength = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.MeasureLength = 0;
+ 
+   //    measurement_command_msg.MeasureLength = 0;
+}
+
+//----------------------------------------------------------------------------
+
+void MeasurementControlTab::btnMeasureDistanceToPlaneClick()
+{
+    std::cerr << "Measure DistanceToPlane" << std::endl;
+    ros::Rate loop_rate(10);
+    loop_rate.sleep();
+
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
+
+    measurement_command_msg.MeasureDistanceToPlane = 1;
+    measurement_pub.publish(measurement_command_msg);
+    ros::spinOnce();
+
+    //    measurement_command_msg.MeasureDistanceToPlane = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -176,11 +164,15 @@ void MeasurementControlTab::btnCropClick()
     std::cerr << "Crop" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.Crop = 1;
-    measurement_pub.publish(measurement_msg);
+
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
+
+    measurement_command_msg.Crop = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.Crop = 0;
+ 
+   //   measurement_command_msg.Crop = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -190,11 +182,15 @@ void MeasurementControlTab::btnUndoClick()
     std::cerr << "Undo" << std::endl;
     ros::Rate loop_rate(10);
     loop_rate.sleep();
-    //    ud_measurement_panel::MeasurementCommand msg;
-    measurement_msg.Undo = 1;
-    measurement_pub.publish(measurement_msg);
+
+    set_default_measurement_command_type();
+    gather_current_measurement_command_parameters();
+
+    measurement_command_msg.Undo = 1;
+    measurement_pub.publish(measurement_command_msg);
     ros::spinOnce();
-    measurement_msg.Undo = 0;
+
+    //    measurement_command_msg.Undo = 0;
 }
 
 //----------------------------------------------------------------------------

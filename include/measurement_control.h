@@ -42,7 +42,24 @@
 
 #include <rviz/panel.h>
 
+#include <shape_msgs/Plane.h>
+
+#include "ud_imarker/UDMeasurement.h"
+
 #include "ud_measurement_panel/MeasurementCommand.h"
+
+
+#ifndef MEASUREMENT_TYPE_DISTANCE
+
+#define MEASUREMENT_TYPE_DISTANCE    0
+#define MEASUREMENT_TYPE_PLANE       1
+#define MEASUREMENT_TYPE_LINE        2
+#define MEASUREMENT_TYPE_CIRCLE      3
+#define MEASUREMENT_TYPE_TRANSFORM   4
+#define MEASUREMENT_TYPE_ERROR       5
+
+#endif
+
 
 namespace ud_measurement_space
 {
@@ -92,10 +109,12 @@ namespace ud_measurement_space
       
     ros::NodeHandle n;
     ros::Publisher measurement_pub;
-      
+    ros::Subscriber plane_sub;
+    ros::Subscriber measurement_sub;
+
     QString groupStyleSheet;
 
-    ud_measurement_panel::MeasurementCommand measurement_msg;
+    ud_measurement_panel::MeasurementCommand measurement_command_msg;
 
     // Update timer
     RVizRefreshManager* refreshManager;
@@ -126,13 +145,20 @@ namespace ud_measurement_space
     void btnEstimateCircleClick();
     void btnEstimateRigidTransformClick();
     void btnMeasureLengthClick();
+    void btnMeasureDistanceToPlaneClick();
     void btnCropClick();
     void btnUndoClick();
     
     // Update all state information
     void refreshState();
     
-  private:
+    //  private:
+  public:
+
+    char *result_str;
+
+    QLineEdit* textEstimateResult;
+    QLineEdit* textMeasureResult;
 
     QLineEdit* textCursorMaxDistance;
 
@@ -170,8 +196,10 @@ namespace ud_measurement_space
     QGroupBox *InitializeEstimateCircleBox();
     QGroupBox *InitializeEstimateRigidTransformBox();
 
-    void set_default_measurement_message();
-    void construct_current_measurement_message();
+    void set_default_measurement_command_type();
+    void set_default_measurement_command_parameters();
+    void set_default_measurement_command();
+    void gather_current_measurement_command_parameters();
 
   };
   

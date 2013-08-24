@@ -4,7 +4,7 @@ project(ud_measurement_panel)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package( catkin REQUIRED COMPONENTS roscpp rospy message_generation) 
+find_package( catkin REQUIRED COMPONENTS roscpp rospy geometry_msgs std_msgs message_generation) 
 
 add_message_files(
   FILES
